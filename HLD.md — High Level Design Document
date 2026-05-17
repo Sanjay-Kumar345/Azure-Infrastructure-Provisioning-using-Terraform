@@ -1,0 +1,181 @@
+1. 📌 Project Overview
+
+This project demonstrates the implementation of Infrastructure as Code (IaC) using Terraform to automate the provisioning of Azure Resource Groups and Azure Storage Accounts.
+
+The solution uses Terraform for_each functionality to dynamically create multiple Azure resources using reusable configurations.
+
+The project follows real-world DevOps practices for scalable, consistent, and automated infrastructure deployment in Microsoft Azure cloud environments.
+2. 🎯 Objective
+
+The primary objectives of this project are:
+
+Automate Azure infrastructure deployment
+Reduce manual provisioning efforts
+Implement reusable Terraform code
+Enable scalable infrastructure creation
+Follow DevOps and Infrastructure as Code best practices
+
+3. 🏗️ High Level Architecture
++---------------------------------------------------+
+|                    Developer                      |
++------------------------+--------------------------+
+                         |
+                         v
++---------------------------------------------------+
+|                 Terraform CLI                     |
+|         (terraform init/plan/apply)               |
++------------------------+--------------------------+
+                         |
+                         v
++---------------------------------------------------+
+|            Terraform Configuration Files          |
+|                                                   |
+|  - provider.tf                                    |
+|  - main.tf                                        |
+|  - variables.tf                                   |
+|  - terraform.tfvars                               |
+|  - output.tf                                      |
++------------------------+--------------------------+
+                         |
+                         v
++---------------------------------------------------+
+|              AzureRM Provider Plugin              |
++------------------------+--------------------------+
+                         |
+        ---------------------------------------
+        |                                     |
+        v                                     v
+
++----------------------+      +----------------------------+
+| Azure Resource Group |      | Azure Storage Account      |
+|      alpha-rg        |----->|    alphastorage12345       |
++----------------------+      +----------------------------+
+
++----------------------+      +----------------------------+
+| Azure Resource Group |      | Azure Storage Account      |
+|       beta-rg        |----->|    betastorage67890        |
++----------------------+      +----------------------------+
+
+4. ⚙️ Components Description
+4.1 Terraform CLI
+
+Terraform CLI is used to execute Infrastructure as Code operations.
+
+Responsibilities:
+Initialize Terraform environment
+Validate Terraform configuration
+Generate execution plan
+Provision Azure resources
+4.2 AzureRM Provider
+
+AzureRM provider acts as a bridge between Terraform and Microsoft Azure APIs.
+
+Responsibilities:
+Authenticate with Azure
+Create and manage Azure resources
+Handle Terraform resource provisioning
+4.3 Resource Groups
+
+Azure Resource Groups are logical containers used to organize Azure resources.
+
+Features:
+Resource isolation
+Centralized management
+Environment segregation
+4.4 Azure Storage Accounts
+
+Azure Storage Accounts provide scalable and secure cloud storage.
+
+Features:
+Blob storage
+High availability
+Data redundancy
+Cloud-native storage services
+5. 📂 Terraform Configuration Structure
+File Name	Purpose
+provider.tf	Azure provider configuration
+main.tf	Resource creation logic
+variables.tf	Variable definitions
+terraform.tfvars	Variable values
+output.tf	Terraform outputs
+6. 🔄 Workflow
+Step 1 — Initialize Terraform
+terraform init
+
+Downloads required providers and initializes Terraform.
+
+Step 2 — Validate Configuration
+terraform validate
+
+Checks Terraform syntax and configuration validity.
+
+Step 3 — Generate Execution Plan
+terraform plan
+
+Displays resources that will be created or modified.
+
+Step 4 — Deploy Infrastructure
+terraform apply
+
+Creates Azure Resource Groups and Storage Accounts.
+
+7. 🔁 Dynamic Resource Creation using for_each
+
+The project uses Terraform for_each to dynamically create multiple Azure resources.
+
+Benefits:
+Reusable code
+Reduced duplication
+Scalable deployments
+Simplified infrastructure management
+
+Example:
+
+for_each = var.rg-name
+
+Terraform automatically iterates through all map objects.
+
+8. 🔐 Security Considerations
+Azure authentication handled through Azure CLI
+Sensitive information should not be hardcoded
+.tfstate files should be stored securely
+.gitignore prevents sensitive files from being uploaded to GitHub
+9. 📈 Scalability
+
+This solution can be extended to deploy:
+
+Virtual Machines
+Virtual Networks
+Load Balancers
+Kubernetes Clusters
+Azure Key Vault
+Azure SQL Databases
+10. 💡 Real-Time DevOps Use Case
+
+This Terraform-based deployment model is commonly used in enterprise DevOps environments for:
+
+Infrastructure automation
+Multi-environment deployment (Dev, QA, Prod)
+Standardized infrastructure provisioning
+Cloud resource management
+CI/CD pipeline integration
+11. 🚀 Advantages of the Solution
+
+✅ Infrastructure as Code (IaC)
+✅ Automated cloud provisioning
+✅ Dynamic resource creation
+✅ Reusable Terraform code
+✅ Scalable architecture
+✅ Reduced manual effort
+✅ Faster deployment cycles
+
+12. 📌 Future Enhancements
+Remote backend configuration
+Terraform state locking
+CI/CD integration using Azure DevOps or GitHub Actions
+Modular Terraform architecture
+Monitoring and alerting integration
+13. 👨‍💻 Author
+
+Sanjay Kumar
+DevOps Engineer | Azure | Terraform | CI/CD | Docker | Kubernetes
